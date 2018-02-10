@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="3dp"
+    android:orientation="horizontal">
+
+    <View
+        android:layout_width="15dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:backgroundTint="?android:colorAccent"
+        android:background="@drawable/ic_bullet" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="The TextView does not auto-size text (default). ... Returns the maximum number of lines displayed in the given TextView, or -1 if the maximum height was set in pixels instead. .... void " />
+</LinearLayout>
