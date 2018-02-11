@@ -19,9 +19,9 @@ import java.text.ParseException
 /**
  * Created by Lin on 09.02.18.
  */
-object ChangelogDialog {
+object Changelog {
 
-    private val TAG = "ChangelogDialog"
+    private val TAG = "Changelog"
     val ALL_VERSIONS = 0
 
     object XmlTags {
@@ -34,7 +34,7 @@ object ChangelogDialog {
     }
 
     @Throws(XmlPullParserException::class, IOException::class)
-    fun createChangelogDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null): AlertDialog {
+    fun createDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null): AlertDialog {
         return AlertDialog.Builder(ctx)
                 .setView(createChangelogView(ctx, versionCode, title))
                 .setPositiveButton("OK", { _, _ -> })
