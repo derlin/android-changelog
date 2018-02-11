@@ -1,6 +1,5 @@
 package ch.derlin.changelog
 
-import android.content.Context
 import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
@@ -43,10 +42,10 @@ class ChangelogAdapter(val list: List<ChangelogItem>) :
     override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder =
             if (viewType > 0) {
                 HeaderHolder(LayoutInflater.from(parent!!.context)
-                        .inflate(R.layout.cell_changelog_header, parent, false))
+                        .inflate(R.layout.changelog_cell_header, parent, false))
             } else {
                 Holder(LayoutInflater.from(parent!!.context)
-                        .inflate(R.layout.cell_changelog, parent, false))
+                        .inflate(R.layout.changelog_cell, parent, false))
             }
 
 

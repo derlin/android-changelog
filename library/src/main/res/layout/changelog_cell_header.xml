@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/text"
-        style="@style/Changelog.HeaderTitle"
+        style="?attr/changelogHeaderTitleStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="1.0" />
 
     <TextView
         android:id="@+id/date"
-        style="@style/Changelog.HeaderDate"
+        style="?attr/changelogHeaderDateStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="12/23/2015"
@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/summary"
-        style="@style/Changelog.HeaderSummary"
+        style="?attr/changelogHeaderSummaryStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="this is a summary"

@@ -43,7 +43,7 @@ object ChangelogDialog {
 
     @Throws(XmlPullParserException::class, IOException::class)
     fun createChangelogView(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null): View {
-        val view = ctx.layoutInflater.inflate(R.layout.dialog_changelog, null)
+        val view = ctx.layoutInflater.inflate(R.layout.changelog, null)
         val changelog = loadChangelog(ctx, R.xml.changelog, versionCode)
         title?.let { view.findViewById<TextView>(R.id.changelog_title).text = it }
         view.findViewById<RecyclerView>(R.id.recyclerview).adapter = ChangelogAdapter(changelog)

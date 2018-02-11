@@ -5,11 +5,11 @@
     android:orientation="horizontal"
     android:paddingTop="3dp">
 
-    <View style="@style/Changelog.CellBullet" />
+    <View style="?attr/changelogBulletStyle" />
 
     <TextView
         android:id="@+id/text"
-        style="@style/Changelog.CellText"
+        style="?attr/changelogTextStyle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Fix bug" />
