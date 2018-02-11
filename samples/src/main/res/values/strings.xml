@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">samples</string>
+    <string name="theme_explanation">Select the theme to apply using the spinner below. Under the hood, it will call `setTheme(themeId)` (see values/styles.xml for more information)</string>
+    <string name="versions_explanation">The library let\'s you choose what changelog version to display. By default, everything appears (full). If you want the changelog only from a given version, pass the correct `versioncode` to the library.</string>
+
+    <string-array name="themes">
+        <item>Default</item>
+        <item>Custom</item>
+    </string-array>
+
 </resources>

@@ -6,6 +6,37 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <!-- Configure the library style
+            This line is mandatory !!! It will set the styles to default -->
+        <item name="changelogStyle">@style/LibChangelog</item>
     </style>
 
+    <style name="AppTheme.ApplyCustomChangelog" parent="AppTheme">
+        <!-- To modify the changelog styles, you need to apply a
+             changelog style that inherits from LibChangelog -->
+        <item name="changelogStyle">@style/CustomChangelog</item>
+    </style>
+
+
+    <style name="CustomChangelog" parent="LibChangelog">
+        <!-- Here, we override some styles. All available styles are defined in the
+             library's res/values/attrs.xml file -->
+        <item name="changelogTitleStyle">@style/MyChangelogTitle</item>
+        <item name="changelogBulletStyle">@style/MyBulletStyle</item>
+    </style>
+
+    <style name="MyChangelogTitle" parent="LibChangelog.DialogTitle">
+        <!-- Change the dialog title style -->
+        <item name="android:textColor">@android:color/white</item>
+        <item name="android:background">?android:colorPrimary</item>
+        <item name="android:textAllCaps">false</item>
+    </style>
+
+    <style name="MyBulletStyle" parent="LibChangelog.CellBullet">
+        <!-- Change the bullets. Here, use an ugly android launcher icon -->
+        <item name="android:background">@drawable/ic_launcher_foreground</item>
+        <!-- By default, the icon is quite small. Make it bigger -->
+        <item name="android:layout_width">30dp</item>
+        <item name="android:layout_height">30dp</item>
+    </style>
 </resources>
