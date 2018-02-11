@@ -26,6 +26,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showChangelog(version: Int = ChangelogDialog.ALL_VERSIONS) {
-        createChangelogDialog(version).show()
+        ChangelogDialog.createChangelogDialog(this, version).show()
     }
 }

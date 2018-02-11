@@ -4,17 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    style="@style/Changelog.Window"
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/changelog_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/changelog_title"
-        android:textColor="?android:colorPrimary"
-        android:textAllCaps="true"
-        android:gravity="center"
-        android:paddingBottom="5dp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+        style="@style/Changelog.DialogTitle" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerview"
