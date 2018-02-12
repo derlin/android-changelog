@@ -1,14 +1,35 @@
 # Changelog Library for Android
 
+- [Changelog Library for Android](#changelog-library-for-android)
+  * [Introduction blabla](#introduction-blabla)
+    + [What ?](#what)
+    + [Why ?](#why)
+    + [Overview](#overview)
+    + [Features](#features)
+    + [Samples](#samples)
+  * [Getting started](#getting-started)
+    + [Include the library](#include-the-library)
+    + [Configure the dialog style](#configure-the-dialog-style)
+    + [Write the changelog](#write-the-changelog)
+    + [Display the dialog](#display-the-dialog)
+  * [Customisation](#customisation)
+    + [Change the dialog title](#change-the-dialog-title)
+    + [Choose what release to show](#choose-what-release-to-show)
+    + [Define your own styles](#define-your-own-styles)
+    + [Acknowledgments](#acknowledgments)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
+
 ## Introduction blabla 
 
-###  What ?
+###  What
 
 A simple and lightweight library written in Kotlin to show ?beautiful? _changelog_ and _what's new_ dialogs.
 
 The changelog information is written in a simple xml file under `res/xml`.
 
-### Why ?
+### Why
 
 I wanted a simple dialog to show my users after an app update. So as usual, I began browsing Github and other platforms for a nice library. I found some, for example [https://github.com/MartinvanZ/Inscription](https://github.com/MartinvanZ/Inscription).
 
