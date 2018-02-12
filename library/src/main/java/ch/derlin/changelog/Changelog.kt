@@ -22,7 +22,7 @@ import java.text.ParseException
  * Copyright (C) 2018 Lucy Linder (derlin)
  *
  * This software may be modified and distributed under the terms
- * of the license TODO.  See the LICENSE file for details.
+ * of the Apache 2.0 license.  See the LICENSE file for details.
  */
 object Changelog {
 
@@ -45,9 +45,11 @@ object Changelog {
      * @param versionCode Define the oldest version to show. In other words, the dialog will contains
      * release entries with a `versionCode` attribute >= [versionCode]. Default to all.
      * @param title The title of the dialog. Default to "Changelog"
+     * @param resId The resourceId of the xml file, default to `R.xml.changelog`
      */
     @Throws(XmlPullParserException::class, IOException::class)
-    fun createDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null): AlertDialog {
+    fun createDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS,
+                     title: String? = null, resId: Int = R.xml.changelog): AlertDialog {
         return AlertDialog.Builder(ctx)
                 .setView(createChangelogView(ctx, versionCode, title))
                 .setPositiveButton("OK", { _, _ -> })
@@ -60,9 +62,10 @@ object Changelog {
      * See [createDialog] for the parameters.
      */
     @Throws(XmlPullParserException::class, IOException::class)
-    fun createChangelogView(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null): View {
+    fun createChangelogView(ctx: Activity, versionCode: Int = ALL_VERSIONS,
+                            title: String? = null, resId: Int = R.xml.changelog): View {
         val view = ctx.layoutInflater.inflate(R.layout.changelog, null)
-        val changelog = loadChangelog(ctx, R.xml.changelog, versionCode)
+        val changelog = loadChangelog(ctx, resId, versionCode)
         title?.let { view.findViewById<TextView>(R.id.changelog_title).text = it }
         view.findViewById<RecyclerView>(R.id.recyclerview).adapter = ChangelogAdapter(changelog)
         return view

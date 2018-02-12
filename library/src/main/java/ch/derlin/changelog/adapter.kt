@@ -8,11 +8,12 @@ import android.widget.TextView
 
 /**
  * adapter.tk
+ * Defines classes and adapters for the changelog dialog view.
  *
  * Copyright (C) 2018 Lucy Linder (derlin)
  *
  * This software may be modified and distributed under the terms
- * of the license TODO.  See the LICENSE file for details.
+ * of the Apache 2.0 license.  See the LICENSE file for details.
  */
 
 /** Holds information about one "item", i.e. a <change> */
