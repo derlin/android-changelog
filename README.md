@@ -17,7 +17,7 @@ Table of contents
   + [Change the dialog title](#change-the-dialog-title)
   + [Choose what release to show](#choose-what-release-to-show)
   + [Define your own styles](#define-your-own-styles)
-  + [Acknowledgments](#acknowledgments)
+* [Acknowledgments](#acknowledgments)
 
 ## Introduction blabla 
 
@@ -204,16 +204,13 @@ An example is worth a thousand words. To make the screenshot on the right in the
 
 Done !
 
-### Acknowledgments
+## Acknowledgments
 
 This library has been motivated by the following project (from whom I reused the xml structure):
 
 * [Inscription](https://github.com/MartinvanZ/Inscription/) by [Martin van Zuilekom](https://github.com/MartinvanZ/)
 
 
-See here
-You? Please create pull requests against the dev branch
-
-© Copyright Lucy Linder
+© Copyright 2018 Lucy Linder
 
 
