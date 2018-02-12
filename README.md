@@ -1,22 +1,23 @@
 # Changelog Library for Android
 
-- [Changelog Library for Android](#changelog-library-for-android)
-  * [Introduction blabla](#introduction-blabla)
-    + [What ?](#what)
-    + [Why ?](#why)
-    + [Overview](#overview)
-    + [Features](#features)
-    + [Samples](#samples)
-  * [Getting started](#getting-started)
-    + [Include the library](#include-the-library)
-    + [Configure the dialog style](#configure-the-dialog-style)
-    + [Write the changelog](#write-the-changelog)
-    + [Display the dialog](#display-the-dialog)
-  * [Customisation](#customisation)
-    + [Change the dialog title](#change-the-dialog-title)
-    + [Choose what release to show](#choose-what-release-to-show)
-    + [Define your own styles](#define-your-own-styles)
-    + [Acknowledgments](#acknowledgments)
+Table of contents
+
+* [Introduction blabla](#introduction-blabla)
+  + [What ?](#what)
+  + [Why ?](#why)
+  + [Overview](#overview)
+  + [Features](#features)
+  + [Samples](#samples)
+* [Getting started](#getting-started)
+  + [Include the library](#include-the-library)
+  + [Configure the dialog style](#configure-the-dialog-style)
+  + [Write the changelog](#write-the-changelog)
+  + [Display the dialog](#display-the-dialog)
+* [Customisation](#customisation)
+  + [Change the dialog title](#change-the-dialog-title)
+  + [Choose what release to show](#choose-what-release-to-show)
+  + [Define your own styles](#define-your-own-styles)
+  + [Acknowledgments](#acknowledgments)
 
 ## Introduction blabla 
 
