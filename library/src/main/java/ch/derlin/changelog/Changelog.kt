@@ -51,7 +51,7 @@ object Changelog {
     fun createDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS,
                      title: String? = null, resId: Int = R.xml.changelog): AlertDialog {
         return AlertDialog.Builder(ctx)
-                .setView(createChangelogView(ctx, versionCode, title))
+                .setView(createChangelogView(ctx, versionCode, title, resId))
                 .setPositiveButton("OK", { _, _ -> })
                 .create()
     }
