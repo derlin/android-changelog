@@ -1,3 +1,5 @@
+github.properties
+
 *.iml
 .gradle
 /local.properties
