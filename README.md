@@ -55,21 +55,45 @@ A sample app is available under `samples`. Feel free to clone and test it.
 
 ### Include the library
 
-Add the maven repository in your project's `build.gradle`:
+This library is hosted on GitHub packages. 
 
-```
+GitHub packages currently require a GitHub token... 
+From within your GitHub account, Settings -> Developer Settings -> Personal Access Tokens -> Generate new token.
+Ensure the token has the scope `read:packages`, copy it and create a file `github.properties` at the root of your project,
+with the following content:
+````properties
+gpr.usr=YOUR_GITHUB_USERNAME
+gpr.key=YOUR_PERSONAL_ACCESS_TOKEN
+````
+Don't forget to add `github.propoerties` to your `.gitignore`.
+
+
+Now, add the maven repository in your module's `build.gradle`:
+
+```groovy
+// github tokens for access to Github Packages
+def githubProperties = new Properties()
+githubProperties.load(new FileInputStream(rootProject.file("github.properties")))
+
 repositories {
-    maven {
-        url  "https://dl.bintray.com/derlin/maven" 
+    /* ... other ... */
+    maven { 
+        name = "GitHubPackages"
+        url = uri("https://maven.pkg.github.com/derlin/android-changelog")
+
+        credentials {
+            username = githubProperties['gpr.usr'] ?: System.getenv("GPR_USER")
+            password = githubProperties['gpr.key'] ?: System.getenv("GPR_API_KEY")
+        }
     }
 }
 ```
 
-Add the dependency in your module's `build.gradle`:
-```
+Add the dependency (change version if needed):
+```groovy
 dependencies {
-    ...
-    implementation 'ch.derlin.changelog:library:1.0@aar'
+    /* ... */
+    implementation 'ch.derlin.android:changelog:1.1@aar'
 }
 ```
 ### Configure the dialog style

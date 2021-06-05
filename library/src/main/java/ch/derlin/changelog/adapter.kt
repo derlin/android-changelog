@@ -1,10 +1,10 @@
 package ch.derlin.changelog
 
-import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 
 /**
  * adapter.tk
@@ -30,8 +30,8 @@ open class Holder(v: View) : RecyclerView.ViewHolder(v) {
 
 /** Holder for the [ChangelogAdapter]. Used for [ChangelogHeader]. */
 class HeaderHolder(v: View) : Holder(v) {
-    val dateView = v.findViewById<TextView>(R.id.date)
-    val summaryView = v.findViewById<TextView>(R.id.summary)
+    val dateView: TextView = v.findViewById<TextView>(R.id.date)
+    val summaryView: TextView = v.findViewById<TextView>(R.id.summary)
 
     var summary: String? = null
         set(value) {
@@ -42,34 +42,31 @@ class HeaderHolder(v: View) : Holder(v) {
 
 /** An adapter for [ChangelogItem] and [ChangelogHeader]. Nothing special, except that
  * it will create two types of holders, depending on the data type. */
-class ChangelogAdapter(val list: List<ChangelogItem>) :
-        RecyclerView.Adapter<Holder>() {
+class ChangelogAdapter(private val list: List<ChangelogItem>) : RecyclerView.Adapter<Holder>() {
 
     override fun getItemCount(): Int = list.size
 
     override fun getItemViewType(position: Int): Int =
             if (list[position] is ChangelogHeader) 1 else 0
 
-    override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): Holder =
-            if (viewType > 0) {
-                HeaderHolder(LayoutInflater.from(parent!!.context)
-                        .inflate(R.layout.changelog_cell_header, parent, false))
-            } else {
-                Holder(LayoutInflater.from(parent!!.context)
-                        .inflate(R.layout.changelog_cell, parent, false))
-            }
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder = when {
+        viewType > 0 -> HeaderHolder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.changelog_cell_header, parent, false))
+
+        else -> Holder(LayoutInflater.from(parent.context)
+                .inflate(R.layout.changelog_cell, parent, false))
+    }
 
 
-    override fun onBindViewHolder(h: Holder?, position: Int) {
+    override fun onBindViewHolder(holder: Holder, position: Int) {
         val item = list[position]
-        h?.let { holder ->
-            holder.textview.text = item.text
+        holder.textview.text = item.text
 
-            if (holder is HeaderHolder) {
-                val header = item as ChangelogHeader
-                holder.summary = header.summary
-                holder.dateView.text = header.date
-            }
+        if (holder is HeaderHolder) {
+            val header = item as ChangelogHeader
+            holder.summary = header.summary
+            holder.dateView.text = header.date
         }
+
     }
 }

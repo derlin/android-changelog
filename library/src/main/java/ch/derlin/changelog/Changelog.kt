@@ -5,10 +5,10 @@ import android.app.AlertDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.res.XmlResourceParser
-import android.support.v7.widget.RecyclerView
 import android.text.format.DateFormat
 import android.view.View
 import android.widget.TextView
+import androidx.recyclerview.widget.RecyclerView
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
 import java.io.IOException
@@ -27,16 +27,16 @@ import java.text.ParseException
 object Changelog {
 
     /** Use this value if you want all the changelog (i.e. all the release entries) to appear. */
-    val ALL_VERSIONS = 0
+    const val ALL_VERSIONS = 0
 
     /** Constants for xml tags and attributes (see res/xml/changelog.xml for an example) */
     object XmlTags {
-        val RELEASE = "release"
-        val ITEM = "change"
-        val VERSION_NAME = "version"
-        val VERSION_CODE = "versioncode"
-        val SUMMARY = "summary"
-        val DATE = "date"
+        const val RELEASE = "release"
+        const val ITEM = "change"
+        const val VERSION_NAME = "version"
+        const val VERSION_CODE = "versioncode"
+        const val SUMMARY = "summary"
+        const val DATE = "date"
     }
 
     /**
@@ -48,11 +48,10 @@ object Changelog {
      * @param resId The resourceId of the xml file, default to `R.xml.changelog`
      */
     @Throws(XmlPullParserException::class, IOException::class)
-    fun createDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS,
-                     title: String? = null, resId: Int = R.xml.changelog): AlertDialog {
+    fun createDialog(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null, resId: Int = R.xml.changelog): AlertDialog {
         return AlertDialog.Builder(ctx)
                 .setView(createChangelogView(ctx, versionCode, title, resId))
-                .setPositiveButton("OK", { _, _ -> })
+                .setPositiveButton("OK") { _, _ -> }
                 .create()
     }
 
@@ -62,8 +61,7 @@ object Changelog {
      * See [createDialog] for the parameters.
      */
     @Throws(XmlPullParserException::class, IOException::class)
-    fun createChangelogView(ctx: Activity, versionCode: Int = ALL_VERSIONS,
-                            title: String? = null, resId: Int = R.xml.changelog): View {
+    fun createChangelogView(ctx: Activity, versionCode: Int = ALL_VERSIONS, title: String? = null, resId: Int = R.xml.changelog): View {
         val view = ctx.layoutInflater.inflate(R.layout.changelog, null)
         val changelog = loadChangelog(ctx, resId, versionCode)
         title?.let { view.findViewById<TextView>(R.id.changelog_title).text = it }
@@ -93,22 +91,19 @@ object Changelog {
     @Throws(XmlPullParserException::class, IOException::class)
     private fun loadChangelog(context: Activity, resourceId: Int = R.xml.changelog, version: Int = ALL_VERSIONS):
             MutableList<ChangelogItem> {
-        val clList = mutableListOf<ChangelogItem>()
-        val xml = context.resources.getXml(resourceId)
-        try {
+        val changelogItems = mutableListOf<ChangelogItem>()
+        context.resources.getXml(resourceId).use { xml ->
             while (xml.eventType != XmlPullParser.END_DOCUMENT) {
                 if (xml.eventType == XmlPullParser.START_TAG && xml.name == XmlTags.RELEASE) {
                     val releaseVersion = Integer.parseInt(xml.getAttributeValue(null, XmlTags.VERSION_CODE))
-                    clList.addAll(parseReleaseTag(context, xml))
+                    changelogItems.addAll(parseReleaseTag(context, xml))
                     if (releaseVersion <= version) break
                 } else {
                     xml.next()
                 }
             }
-        } finally {
-            xml.close()
         }
-        return clList
+        return changelogItems
     }
 
     /**
@@ -119,14 +114,12 @@ object Changelog {
      */
     @Throws(XmlPullParserException::class, IOException::class)
     private fun parseReleaseTag(context: Context, xml: XmlResourceParser): MutableList<ChangelogItem> {
-        assert(xml.name == XmlTags.RELEASE && xml.eventType == XmlPullParser.START_TAG)
+        require(xml.name == XmlTags.RELEASE && xml.eventType == XmlPullParser.START_TAG)
         val items = mutableListOf<ChangelogItem>()
         // parse header
         items.add(ChangelogHeader(
                 version = xml.getAttributeValue(null, XmlTags.VERSION_NAME) ?: "X.X",
-                date = xml.getAttributeValue(null, XmlTags.DATE)?.let {
-                    parseDate(context, it)
-                },
+                date = xml.getAttributeValue(null, XmlTags.DATE)?.let { parseDate(context, it) },
                 summary = xml.getAttributeValue(null, XmlTags.SUMMARY))
         )
         xml.next()
@@ -147,12 +140,12 @@ object Changelog {
      * @return The date formatted using the system locale, or [dateString] if the parsing failed.
      */
     private fun parseDate(context: Context, dateString: String): String {
-        try {
+        return try {
             val parsedDate = Date.valueOf(dateString)
-            return DateFormat.getDateFormat(context).format(parsedDate)
+            DateFormat.getDateFormat(context).format(parsedDate)
         } catch (_: ParseException) {
             // wrong date format... Just keep the string as is
-            return dateString
+            dateString
         }
     }
 }
